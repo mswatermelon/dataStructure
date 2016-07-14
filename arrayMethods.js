@@ -32,7 +32,7 @@ export function filter(arr, callback, thisArg) {
             let newCallback = callback.bind(thisArg);
 
             if(newCallback(arr[index], index, arr)){
-                newArr.push(arr[index]);
+                newArr[newArr.length] = arr[index];
             }
         }
     }
@@ -56,7 +56,7 @@ export function map(arr, callback, thisArg) {
             let newCallback = callback.bind(thisArg),
                 newValue = newCallback(arr[index], index, arr);
 
-            newArr.push(newValue);
+            newArr[newArr.length] = newValue;
         }
     }
 
@@ -82,7 +82,7 @@ export function slice(arr, begin, end) {
     for(let index = start; index < stop; index++){
         let newValue = arr[index];
 
-        newArr.push(newValue);
+        newArr[newArr.length] = newValue;
     }
 
     return newArr;
@@ -129,7 +129,7 @@ export function splice(arr, start, deleteCount){
     for(let index = 0; index < len; index++){
         if( index >= start && index < start + deleteCount){
             if (index in arr){
-                newArr.push(arr[index]);
+                newArr[newArr.length] = arr[index];
             }
             for(let i = 3; i < argLen; i++){
                 tempArr[tempLen] = arguments[i];
